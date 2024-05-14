@@ -43,17 +43,12 @@ public class Person {
     }
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
         Person person = (Person) obj;
-        return age.equals(person.age) &&
-                id.equals(person.id) &&
-                name.equals(person.name) &&
-                occupation.equals(person.occupation);
+        return Objects.equals(age, person.age) &&
+                Objects.equals(name, person.name) &&
+                Objects.equals(occupation, person.occupation);
     }
 
     @Override

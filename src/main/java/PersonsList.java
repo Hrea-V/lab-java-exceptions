@@ -29,10 +29,12 @@ public class PersonsList {
     }
 
     public Optional<Person> findByName(String name) {
-        if (name.matches(".*\\d.*")) {
-            throw new IllegalArgumentException("Name should not contain digits");
+        if (!name.matches("^[a-zA-Z]+ [a-zA-Z]+$")) {
+            throw new IllegalArgumentException("Name must be properly formatted as 'firstName lastName'");
         }
-        return Optional.empty();
+        return persons.stream()
+                .filter(p -> p.getName().equals(name))
+                .findFirst();
     }
 
     public Person clonePerson(Person original) {
